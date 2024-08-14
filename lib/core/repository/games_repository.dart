@@ -16,8 +16,8 @@ class GamesRepository {
   }
 
 // Create a new game in the database and return its id
-  Future<Game?> createGame(
-      String name, String createdBy, String color, String turnOwner) async {
+  Future<Game?> createGame(String name, String createdBy, String color,
+      String turnOwner, int boardSize) async {
     // Insert the game and return the inserted row(s)
     final response = await _supabaseClient.from('Games').insert([
       {
@@ -26,6 +26,7 @@ class GamesRepository {
         'status': 'waiting',
         'board_color': color,
         'turnOwner': turnOwner,
+        'board': List.generate(boardSize, (index) => ''),
       }
     ]).select();
 

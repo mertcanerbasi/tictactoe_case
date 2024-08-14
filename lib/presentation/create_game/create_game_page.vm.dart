@@ -15,8 +15,10 @@ class CreateGameViewModel {
   String color = 'Red';
   String username = "";
 
+  int boardSize = 9;
+
   Future<Game?> createGame() async {
     return await _gamesRepository.createGame(
-        gameNameController.text, username, color, username);
+        gameNameController.text, username, color, username, boardSize);
   }
 }

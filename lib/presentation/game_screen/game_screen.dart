@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tictactoe_case/core/di/locator.dart';
@@ -75,8 +77,9 @@ class _GameScreenState extends State<GameScreen> {
                           Expanded(
                             child: GridView.builder(
                               gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3, // 3x3 grid
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount:
+                                    sqrt(snapshot.data!.board.length).round(),
                                 mainAxisSpacing: 8.0,
                                 crossAxisSpacing: 8.0,
                               ),

@@ -69,7 +69,7 @@ class GameScreenViewModel {
       await _gamesRepository.updateGameBoard(
           game.id, board, isXturn ? opponent : game.createdBy);
 
-      String? winner = checkWinner();
+      String? winner = checkWinner(game.board.length);
       if (winner != null) {
         showGameOverDialog(winner, context);
       } else if (!board.contains('')) {
@@ -81,7 +81,17 @@ class GameScreenViewModel {
     }
   }
 
-  String? checkWinner() {
+  String? checkWinner(int boardSize) {
+    if (boardSize == 9) {
+      return checkWinner3x3();
+    } else if (boardSize == 16) {
+      return checkWinner4x4();
+    } else {
+      return checkWinner5x5();
+    }
+  }
+
+  String? checkWinner3x3() {
     List<List<int>> winningCombinations = [
       [0, 1, 2],
       [3, 4, 5],
@@ -98,6 +108,59 @@ class GameScreenViewModel {
           (board[combo[0]] == board[combo[1]]) &&
           (board[combo[1]] == board[combo[2]])) {
         return board[combo[0]] == "X" ? game.createdBy : game.opponent;
+      }
+    }
+    return null;
+  }
+
+  String? checkWinner4x4() {
+    List<List<int>> winningCombinations = [
+      [0, 1, 2, 3],
+      [4, 5, 6, 7],
+      [8, 9, 10, 11],
+      [12, 13, 14, 15],
+      [0, 4, 8, 12],
+      [1, 5, 9, 13],
+      [2, 6, 10, 14],
+      [3, 7, 11, 15],
+      [0, 5, 10, 15],
+      [3, 6, 9, 12],
+    ];
+
+    for (var combo in winningCombinations) {
+      if ((board[combo[0]] != '') &&
+          (board[combo[0]] == board[combo[1]]) &&
+          (board[combo[1]] == board[combo[2]]) &&
+          (board[combo[2]] == board[combo[3]])) {
+        return board[combo[0]] == "X" ? game.createdBy : game.opponent;
+      }
+    }
+    return null;
+  }
+
+  String? checkWinner5x5() {
+    List<List<int>> winningCombinations = [
+      [0, 1, 2, 3, 4],
+      [5, 6, 7, 8, 9],
+      [10, 11, 12, 13, 14],
+      [15, 16, 17, 18, 19],
+      [20, 21, 22, 23, 24],
+      [0, 5, 10, 15, 20],
+      [1, 6, 11, 16, 21],
+      [2, 7, 12, 17, 22],
+      [3, 8, 13, 18, 23],
+      [4, 9, 14, 19, 24],
+      [0, 6, 12, 18, 24],
+      [4, 8, 12, 16, 20],
+    ];
+
+    for (var combo in winningCombinations) {
+      if ((board[combo[0]] != '') && (board[combo[0]] == board[combo[1]])) {
+        if ((board[combo[1]] == board[combo[2]]) &&
+            (board[combo[2]] == board[combo[3]]) &&
+            (board[combo[3]] == board[combo[4]])) {
+          return board[combo[0]] == "X" ? game.createdBy : game.opponent;
+        }
       }
     }
     return null;
