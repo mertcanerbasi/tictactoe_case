@@ -75,8 +75,8 @@ class GameScreenViewModel {
       } else if (!board.contains('')) {
         // Restart the game board
         await _gamesRepository.updateGameBoard(
-            game.id, List.filled(9, ''), game.createdBy);
-        board = List.filled(9, '');
+            game.id, List.filled(game.board.length, ''), game.createdBy);
+        board = List.filled(game.board.length, '');
       }
     }
   }
