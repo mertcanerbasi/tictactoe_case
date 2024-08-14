@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               title: Constants.APP_NAME,
               theme: AppTheme.theme(),
-              home: const SplashPage(),
+              home: SplashPage(),
             ),
           );
         });
