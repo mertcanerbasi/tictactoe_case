@@ -194,4 +194,10 @@ This project is protected under the [SELECT-A-LICENSE](https://choosealicense.co
 
 ## Images
 
-![First Image](app_images/image1.png)
+<img src="app_images/image1.png" alt="Screen 1" height="100">
+<img src="app_images/image2.png" alt="Screen 2" height="100">
+<img src="app_images/image3.png" alt="Screen 3" height="100">
+<img src="app_images/image4.png" alt="Screen 4" height="100">
+<img src="app_images/image5.png" alt="Screen 5" height="100">
+<img src="app_images/image6.png" alt="Screen 6" height="100">
+<img src="app_images/image7.png" alt="Screen 7" height="100">
