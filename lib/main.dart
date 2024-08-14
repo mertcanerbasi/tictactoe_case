@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe_case/core/di/locator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupDI();
+
   runApp(const MainApp());
 }
 
